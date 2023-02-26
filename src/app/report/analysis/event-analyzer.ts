@@ -17,6 +17,9 @@ export class EventAnalyzer {
   public static EVENT_LEEWAY = 100; // in milliseconds. Allow damage to occur just slightly later than "should" be
                                     // possible given strict debuff times. Blah blah server doesn't keep time exactly.
 
+  
+  public static TRAVEL_TIME_LEEWAY = 2500;
+
   private static MIN_INFER_HASTE_EVENTS = 8; // require a minimum of MB/VT casts to infer missing haste value
 
   private analysis: PlayerAnalysis;
@@ -502,7 +505,9 @@ export class EventAnalyzer {
       (spellData.maxDamageInstances * EventAnalyzer.EVENT_LEEWAY) :
       EventAnalyzer.EVENT_LEEWAY;
 
-    if (next.timestamp < (cast.castEnd - EventAnalyzer.EVENT_LEEWAY) || next.timestamp > (maxTimestamp + leeway)) {
+    const travel_leeway = spellData.hasTravel ? EventAnalyzer.TRAVEL_TIME_LEEWAY : 0;
+
+    if (next.timestamp < (cast.castEnd - EventAnalyzer.EVENT_LEEWAY) || next.timestamp > (maxTimestamp + leeway + travel_leeway)) {
       return false;
     }
 

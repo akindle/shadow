@@ -45,7 +45,7 @@ export class LogSummary {
         const actor = new Actor(friendlyData, true, this.anon);
         this.names[actor.id] = actor.name;
 
-        if ((friendlyData.icon === 'Priest-Shadow' || friendlyData.icon === 'Priest') && this.hasEncounters(actor)) {
+        if ((friendlyData.icon === 'Druid-Balance' || friendlyData.icon === 'Druid') && this.hasEncounters(actor)) {
           this.shadowPriests.push(actor);
         }
         return actor;
@@ -54,7 +54,7 @@ export class LogSummary {
     this.actors = allEnemies.concat(allFriendlies);
 
     // Find shadowfiends and assign to their respective priests
-    const fiends = this.actors.filter((a) => a.friendly && a.pet && a.name === 'Shadowfiend');
+    const fiends = this.actors.filter((a) => a.friendly && a.pet && a.name === 'Treant');
     for (const fiend of fiends) {
       if (fiend.owner !== undefined) {
         const priest = this.getActor(fiend.owner);

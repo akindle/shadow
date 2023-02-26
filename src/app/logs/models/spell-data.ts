@@ -28,6 +28,7 @@ export class Spell {
     dotHaste: false,
     statsByTick: false,
     multiTarget: false,
+    hasTravel: false,
   };
 
   public static baseData(id: SpellId) {
@@ -88,6 +89,118 @@ export class Spell {
       damageType: DamageType.DIRECT,
       maxDamageInstances: 1,
       cooldown: 12
+    }),
+
+    [SpellId.WRATH]: data({      
+      rankIds: {
+        [5176]: 1,
+        [5177]: 2,
+        [5178]: 3,
+        [5179]: 4,
+        [5180]: 5,
+        [6780]: 6,
+        [8905]: 7,
+        [9912]: 8,
+        [26984]: 9,
+        [26985]: 10,
+        [48459]: 11
+      },
+      maxRank: 12,
+      damageType: DamageType.DIRECT,
+      maxDamageInstances: 1,
+      baseCastTime: 1.5,
+      hasTravel: true
+    }),
+
+    [SpellId.STARFIRE]: data({      
+      rankIds: {
+        [2912]: 1,
+        [8949]: 2,
+        [8950]: 3,
+        [8951]: 4,
+        [9875]: 5,
+        [9876]: 6,
+        [25298]: 7,
+        [26986]: 8,
+        [48464]: 9,
+      },
+      maxRank: 10,
+      damageType: DamageType.DIRECT,
+      maxDamageInstances: 1,
+      baseCastTime: 3,
+    }),
+
+    [SpellId.INSECT_SWARM]: data({      
+      rankIds: {
+        [5570]: 1,
+        [24974]: 2,
+        [24975]: 3,
+        [24976]: 4,
+        [24977]: 5,
+        [27013]: 6,
+      },
+      maxRank: 7,
+      damageType: DamageType.DOT,
+      baseTickTime: 2,
+      dotHaste: false
+    }),
+
+    [SpellId.MOONFIRE]: data({      
+      rankIds: {
+        [8921]: 1,
+        [8924]: 2,
+        [8925]: 3,
+        [8926]: 4,
+        [8927]: 5,
+        [8928]: 6,
+        [8929]: 7,
+        [9833]: 8,
+        [9834]: 9,
+        [9835]: 10,
+        [26987]: 11,
+        [26988]: 12,
+        [48462]: 13
+      },
+      maxRank: 14,
+      damageType: DamageType.DOT,
+      baseTickTime: 3,
+      dotHaste: false
+    }),
+
+    [SpellId.STARFALL_BUFF]: data({      
+      rankIds: {
+        [48505]: 1,
+        [53199]: 2,
+        [53200]: 3,
+      },
+      maxRank: 4,
+      damageIds: [SpellId.STARFALL, SpellId.STARFALL_SPLASH, 50288, 53188, 53189, 50288, 53191, 53194],
+      damageType: DamageType.DOT,
+      cooldown: 60
+    }),
+
+    [SpellId.FAERIE_FIRE]: data({     
+      maxRank: 1,
+      damageType: DamageType.NONE
+    }),
+
+    [SpellId.FORCE_OF_NATURE]: data({     
+      maxRank: 1,
+      damageType: DamageType.NONE
+    }),
+
+    [SpellId.ECLIPSE_SOLAR]: data({     
+      maxRank: 1,
+      damageType: DamageType.NONE,
+      cooldown: 30,
+      gcd: false
+    }),
+
+    [SpellId.ECLIPSE_LUNAR]: data({      
+      maxRank: 1,
+      damageType: DamageType.NONE,
+      cooldown: 30,
+      gcd: false
     }),
 
     [SpellId.DENSE_DYNAMITE]: data({
@@ -317,6 +430,7 @@ export interface ISpellData {
   dotHaste: boolean;
   statsByTick: boolean;
   multiTarget: boolean;
+  hasTravel: boolean;
   maxInstancesPerDamageId?: {[id: number]: number};
   dynamic?: (baseData: ISpellData, settings: ISettings) => Partial<ISpellData>
 }

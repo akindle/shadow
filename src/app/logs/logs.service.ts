@@ -187,10 +187,10 @@ export class LogsService {
       return of(this.eventCache[cacheId]);
     }
     const castParams = this.makeParams(encounter, {
-      filter: `(source.name="${actor.name}" AND ability.id IN (${LogsService.TRACKED_CASTS.join(',')})) OR source.name="Shadowfiend"`
+      filter: `(source.name="${actor.name}" AND ability.id IN (${LogsService.TRACKED_CASTS.join(',')})) OR source.name="Treant"`
     });
     const damageParams = this.makeParams(encounter, {
-      filter: `(source.name="${actor.name}" AND ability.id IN (${LogsService.TRACKED_DAMAGE.join(',')})) OR source.name="Shadowfiend"`
+      filter: `(source.name="${actor.name}" AND ability.id IN (${LogsService.TRACKED_DAMAGE.join(',')})) OR source.name="Treant"`
     });
 
     return combineLatest(
